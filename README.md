@@ -1,2 +1,2 @@
-# python-ciphers
-Python program for encoding and decoding messages - WIP
+# python-caesar-cipher
+Python program for encoding and decoding messages via Caesar Cipher - WORK IN PROGRESS
