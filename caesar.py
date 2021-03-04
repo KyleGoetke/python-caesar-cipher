@@ -1,50 +1,34 @@
-def caesar(process, message, key):
-	if process[0] == 'd':
-		key = -key
-	translated = ''
-	for symbol in message:
-		if symbol.isalpha():
-			num = ord(symbol)
-			num += key
-			if num > ord('z'):
-				num -= 26
-			elif num < ord('a'):
-				num += 26
-			translated += chr(num)
-		else:
-			translated += symbol
-	return translated
+invalid_method = True
+invalid_num = True
+method = input("Encode or Decode: ").lower()
 
-def main():
-	invalid = True
-	# Choosing a process
-	process = input("Would you like to encode or decode?\n").lower()
-	print()
-	if process in 'encode decode'.split():
-		process = process
-	else:
-		process = input('Enter either "encode" or "decode":\n').lower()
-		print()
-	# Entering Message
-	message = input('Enter your message:\n').lower()
-	print()
-	# Getting a valid key number
-	key = 0
-	key = int(input('Enter the key number (1-26):\n'))
-	print()
-	while invalid == True:
-		if (key >= 1):
-			invalid = False
-			key = key
-		else:
-			invalid = True
-			key = int(input('Please enter a key number greater than 0:\n'))
-			print()
-	# Printing the encoded / decoded message
-	if process[0] == 'd':
-		print('Your decoded message:')
-	elif process[0] == 'e':
-		print('Your encoded message:')
-	print(caesar(process, message, key))
+while invalid_method == True:
+    if (method[0] == "d" or method[0] == "e"):
+        invalid_method = False
+    else:
+        method = input("Please enter a valid choice: ").lower()
 
-main()
+message = input("Enter your message: ").lower()
+key = int(input("Enter the key number (1-26): "))
+
+while invalid_num == True:
+    if (key <= 0 or key > 26):
+        key = int(input('Please enter a valid number: '))
+    else:
+        invalid_num = False
+
+if method[0] == "d":
+    key = -key
+coded = ""
+for char in message:
+    if char.isalpha():
+        num = ord(char)
+        num += key
+        if num > ord("z"):
+            num -= 26
+        elif num < ord("a"):
+            num += 26
+        coded += chr(num)
+    else:
+        coded += char
+print("Your encoded message: " + str(coded))
